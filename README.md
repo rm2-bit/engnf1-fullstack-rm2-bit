@@ -7,9 +7,9 @@ Monorepo layout: `frontend/` (React + Vite) and `backend/` (Node + Express + Pos
 
 ## 2. Live links
 > Fill in after deploying. Keep them live for at least 14 days after the deadline.
-- Frontend: `https://<your-frontend-url>`
-- Backend API: `https://<your-backend-url>/api` (health check: `/api/health`)
-- Repository: `https://github.com/<username>/engnf1-fullstack-<username>`
+- Frontend: `https://engnf1-fullstack-rm2-bit.vercel.app/`
+- Backend API: `https://engnf1-fullstack-rm2-bit.onrender.com` (health check: `/api/health`)
+- Repository: `https://github.com/rm2-bit/engnf1-fullstack-rm2-bit`
 
 ## 3. Seeded credentials
 | Role | Email | Password |
