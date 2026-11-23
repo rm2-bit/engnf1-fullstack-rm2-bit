@@ -1,0 +1,14 @@
+{
+  "tickets": [
+    { "externalId": "seed-013", "subject": "Notification emails missing", "body": "Notification emails never show up in my inbox." },
+    { "externalId": "seed-005", "subject": "My package has not arrived", "body": "Ordered two weeks ago and the tracking page shows no movement." },
+    { "externalId": "feed-001", "subject": "Refund for cancelled order", "body": "Please refund my cancelled order, the payment already left my account." },
+    { "externalId": "feed-002", "subject": "Two-factor code never arrives", "body": "I cannot sign in because the 2FA code is never delivered to my phone." },
+    { "externalId": "feed-003", "subject": "Tracking number does not work", "body": "The tracking link for my shipping label shows nothing at all." },
+    { "externalId": "feed-004", "subject": "Report page throws an exception", "body": "Opening the monthly report throws an exception and shows a blank page." },
+    { "externalId": "feed-005", "subject": "Please add keyboard shortcuts", "body": "Power users would love keyboard shortcuts for the triage queue." },
+    { "externalId": "feed-006", "subject": "Urgent: payment gateway down", "body": "Customers cannot pay, this is urgent and affects every checkout." },
+    { "externalId": "feed-007", "subject": "Invoice shows wrong company name", "body": "The invoice header lists an old company name, please correct it." },
+    { "externalId": "feed-008", "subject": "Mobile app is broken after update", "body": "Since the latest update the mobile app is broken on startup." }
+  ]
+}
