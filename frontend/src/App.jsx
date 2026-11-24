@@ -1,4 +1,5 @@
-import { Navigate, NavLink, Outlet, Route, Routes } from 'react-router-dom';
+import { useEffect } from 'react';
+import { Navigate, NavLink, Outlet, Route, Routes, useLocation } from 'react-router-dom';
 import { useAuth } from './auth.jsx';
 import { Spinner } from './components/ui.jsx';
 import AdminAnalytics from './pages/AdminAnalytics.jsx';
@@ -54,7 +55,27 @@ function GuestOnly({ children }) {
   return user ? <Navigate to="/" replace /> : children;
 }
 
+const TITLES = {
+  '/': 'Triage',
+  '/login': 'Log in',
+  '/register': 'Register',
+  '/resources': 'Resources',
+  '/bookings': 'My bookings',
+  '/admin/resources': 'Manage resources',
+  '/admin/bookings': 'All bookings',
+  '/admin/analytics': 'Analytics',
+};
+
+function usePageTitle() {
+  const { pathname } = useLocation();
+  useEffect(() => {
+    const title = TITLES[pathname] ?? (pathname.startsWith('/resources/') ? 'Resource' : null);
+    document.title = title ? `${title} · TriageSync` : 'TriageSync';
+  }, [pathname]);
+}
+
 export default function App() {
+  usePageTitle();
   return (
     <Routes>
       <Route path="/login" element={<GuestOnly><Login /></GuestOnly>} />
