@@ -8,6 +8,7 @@ export default function Register() {
   const [form, setForm] = useState({ name: '', email: '', password: '' });
   const [error, setError] = useState('');
   const [busy, setBusy] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const set = (k) => (e) => setForm((f) => ({ ...f, [k]: e.target.value }));
 
   async function submit(e) {
@@ -38,7 +39,11 @@ export default function Register() {
           </label>
           <label>
             Password (8-64 characters, at least one letter and one digit)
-            <input type="password" value={form.password} onChange={set('password')} required minLength={8} maxLength={64} autoComplete="new-password" />
+            <input type={showPassword ? 'text' : 'password'} value={form.password} onChange={set('password')} required minLength={8} maxLength={64} autoComplete="new-password" />
+          </label>
+          <label style={{ flexDirection: 'row', alignItems: 'center', gap: '.4rem' }}>
+            <input type="checkbox" checked={showPassword} onChange={(e) => setShowPassword(e.target.checked)} />
+            Show password
           </label>
           <button className="btn btn-primary" disabled={busy}>
             {busy ? 'Creating…' : 'Register'}
