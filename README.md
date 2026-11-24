@@ -34,7 +34,7 @@ backend/
     middleware/ auth.js (JWT + role guard)
     routes/     auth, tickets (+stats), resources, bookings, admin
     services/   ticketService, bookingService, statsService
-    utils/      classifier, validate, errors
+    utils/      classifier, validate, slots, errors
   scripts/      concurrency-test.js, benchmark.js
 frontend/
   public/       sample-feed.json, _redirects

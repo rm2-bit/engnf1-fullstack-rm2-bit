@@ -38,8 +38,8 @@ Application-level "check then insert" is racy: two requests can both see the slo
   - Half-open `[)` ranges make back-to-back bookings legal (B5).
   - The `WHERE` clause means REJECTED and CANCELLED rows no longer block the slot.
   - When two transactions insert overlapping rows concurrently, the second waits for the first to finish; if the first commits it fails with SQLSTATE `23P01`.
-- `createBooking` (`backend/src/services/bookingService.js:89`) maps `23P01` to a `409 CONFLICT`.
-- The "max 3 active future bookings" rule is a count-then-insert, so it is serialised per user with `pg_advisory_xact_lock(hashtextextended(userId, 0))` (`bookingService.js:71`). Different users never block each other.
+- `createBooking` (`backend/src/services/bookingService.js:70`) maps `23P01` to a `409 CONFLICT`.
+- The "max 3 active future bookings" rule is a count-then-insert, so it is serialised per user with `pg_advisory_xact_lock(hashtextextended(userId, 0))` (`bookingService.js:52`). Different users never block each other.
 - `backend/scripts/concurrency-test.js` fires N simultaneous requests from N fresh users for one slot and asserts exactly one `201` and the rest `409`. The constraint itself was also exercised with 10 parallel inserts against PostgreSQL 16 (1 success, 9 exclusion violations).
 
 ### Idempotent re-import with human-override protection (T-B2)
