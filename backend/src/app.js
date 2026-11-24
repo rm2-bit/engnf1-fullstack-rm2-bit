@@ -2,6 +2,7 @@ import cors from 'cors';
 import express from 'express';
 import helmet from 'helmet';
 import { config } from './config.js';
+import { requestLogger } from './middleware/requestLogger.js';
 import adminRouter from './routes/admin.js';
 import authRouter from './routes/auth.js';
 import bookingsRouter from './routes/bookings.js';
@@ -15,6 +16,7 @@ export function createApp() {
   app.use(helmet());
   app.use(cors({ origin: config.corsOrigin === '*' ? true : config.corsOrigin.split(',').map((s) => s.trim()) }));
   app.use(express.json({ limit: '2mb' }));
+  if (process.env.NODE_ENV !== 'test') app.use(requestLogger);
 
   app.get('/api/health', (req, res) => res.json({ status: 'ok' }));
 
