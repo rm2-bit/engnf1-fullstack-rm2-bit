@@ -81,5 +81,5 @@ Rows in the table: _ (e.g. 5,000). Environment: _ (host, region, DB tier). Plan 
 - Tighten TLS to the database: `backend/src/db/pool.js:6` currently sets `rejectUnauthorized: false`; supply the provider CA instead.
 - Move import to a bulk `INSERT ... SELECT unnest(...)` plus one set-based update, instead of per-ticket statements (`ticketService.js:47`), for large feeds.
 - Add a user-lookup endpoint so the Assignee control can pick any agent (`frontend/src/pages/Triage.jsx`, `TicketPanel`).
-- Add rate limiting to `/auth/login` and `/auth/register` (`backend/src/app.js`).
+- Move the in-memory auth rate limiter to a shared store so limits hold across instances (`backend/src/middleware/rateLimit.js`).
 - Add automated API tests (override protection, check order, race test in CI) and frontend component tests.

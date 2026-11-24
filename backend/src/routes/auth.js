@@ -3,10 +3,21 @@ import { Router } from 'express';
 import { config } from '../config.js';
 import { query } from '../db/pool.js';
 import { authenticate, signToken } from '../middleware/auth.js';
+import { rateLimit } from '../middleware/rateLimit.js';
 import { asyncHandler, conflict, unauthenticated, validationError } from '../utils/errors.js';
 import { trimmedString, validateEmail, validatePassword } from '../utils/validate.js';
 
 const router = Router();
+
+// Slows down password guessing and mass sign-ups from one address.
+router.use(
+  ['/login', '/register'],
+  rateLimit({
+    windowMs: config.authRateLimitWindowMs,
+    max: config.authRateLimitMax,
+    message: 'Too many attempts. Try again in a few minutes.',
+  }),
+);
 
 const publicUser = (u) => ({ id: u.id, name: u.name, email: u.email, role: u.role, createdAt: u.createdAt });
 // Compared against when the email is unknown so response time does not reveal which emails exist.

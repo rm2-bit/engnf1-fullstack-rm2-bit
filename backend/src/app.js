@@ -11,6 +11,7 @@ import { errorHandler, notFoundHandler } from './utils/errors.js';
 
 export function createApp() {
   const app = express();
+  app.set('trust proxy', 1); // correct client IP behind the host's proxy
   app.use(helmet());
   app.use(cors({ origin: config.corsOrigin === '*' ? true : config.corsOrigin.split(',').map((s) => s.trim()) }));
   app.use(express.json({ limit: '2mb' }));

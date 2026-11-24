@@ -14,4 +14,6 @@ export const config = {
   jwtExpiresIn: process.env.JWT_EXPIRES_IN || '12h',
   bcryptCost: Math.max(10, Number(process.env.BCRYPT_COST || 10)),
   corsOrigin: process.env.CORS_ORIGIN || '*',
+  authRateLimitMax: Number(process.env.AUTH_RATE_LIMIT_MAX || 100),
+  authRateLimitWindowMs: 15 * 60_000,
 };

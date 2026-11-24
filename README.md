@@ -112,5 +112,5 @@ Tick these yourself after testing on the live URL.
 - Assignee control is "me / unassigned" only, because the API contract has no user-listing endpoint.
 - `Re-Import Feed` posts a bundled sample feed (`frontend/public/sample-feed.json`) or a JSON file you pick.
 - The JWT lives in `localStorage`; there is no refresh-token flow (tokens last 12 hours).
-- No rate limiting on auth endpoints.
+- The auth rate limiter is in-memory, so each server instance counts separately.
 - Frontend has no automated tests.
