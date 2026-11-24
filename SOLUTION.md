@@ -78,7 +78,7 @@ Rows in the table: _ (e.g. 5,000). Environment: _ (host, region, DB tier). Plan 
 ## Part D: One more day
 > Replace with your own priorities after reviewing the code. Candidates, with where they would go:
 
-- Tighten TLS to the database: `backend/src/db/pool.js:6` currently sets `rejectUnauthorized: false`; supply the provider CA instead.
+- Turn on database certificate verification by default (`DB_SSL_REJECT_UNAUTHORIZED` in `backend/src/db/pool.js`) once the provider CA is supplied.
 - Move import to a bulk `INSERT ... SELECT unnest(...)` plus one set-based update, instead of per-ticket statements (`ticketService.js:47`), for large feeds.
 - Add a user-lookup endpoint so the Assignee control can pick any agent (`frontend/src/pages/Triage.jsx`, `TicketPanel`).
 - Move the in-memory auth rate limiter to a shared store so limits hold across instances (`backend/src/middleware/rateLimit.js`).
