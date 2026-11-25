@@ -11,6 +11,12 @@ export default function Login() {
   const [busy, setBusy] = useState(false);
   const [showPassword, setShowPassword] = useState(false);
 
+  function fillDemo(demoEmail, demoPassword) {
+    setEmail(demoEmail);
+    setPassword(demoPassword);
+    setError('');
+  }
+
   async function submit(e) {
     e.preventDefault();
     setBusy(true);
@@ -45,6 +51,17 @@ export default function Login() {
             {busy ? 'Logging in…' : 'Log in'}
           </button>
         </form>
+        <div className="demo">
+          <span className="muted">Demo accounts (fills the form)</span>
+          <div className="row">
+            <button type="button" className="btn btn-small" onClick={() => fillDemo('admin@triagesync.test', 'Admin@123')}>
+              Admin
+            </button>
+            <button type="button" className="btn btn-small" onClick={() => fillDemo('user@triagesync.test', 'User@123')}>
+              Agent
+            </button>
+          </div>
+        </div>
         <p className="muted">
           No account? <Link to="/register">Register</Link>
         </p>

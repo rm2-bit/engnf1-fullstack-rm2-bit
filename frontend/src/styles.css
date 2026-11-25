@@ -142,3 +142,6 @@ tr.priority-low td:first-child { box-shadow: inset 4px 0 0 #d5dae5; }
 .resource-room { border-top-color: #3550d6; }
 .resource-lab { border-top-color: #7b4bd6; }
 .resource-equipment { border-top-color: #d98200; }
+
+/* Demo account shortcuts on the login page */
+.demo { display: flex; flex-direction: column; gap: .4rem; margin-top: .9rem; padding-top: .9rem; border-top: 1px solid var(--line); }
