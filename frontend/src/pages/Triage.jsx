@@ -368,7 +368,11 @@ export default function Triage() {
             </div>
           )}
           <Pagination page={page} totalPages={meta.totalPages} onChange={setPage} />
-          {meta.total > 0 && <p className="muted">{meta.total} tickets</p>}
+          {meta.total > 0 && (
+            <p className="muted">
+              Showing {(page - 1) * 10 + 1}-{Math.min(page * 10, meta.total)} of {meta.total} tickets
+            </p>
+          )}
         </section>
 
         {selectedId && (
