@@ -119,3 +119,9 @@ tbody tr:nth-child(even) td { background: #fafbfd; }
 tr.clickable:hover td, tr.selected td { background: #f0f4ff; }
 .stat { transition: border-color .15s; }
 .stat:hover { border-color: var(--primary); }
+
+/* Priority accent on the first cell of each ticket row */
+tr.priority-urgent td:first-child { box-shadow: inset 4px 0 0 var(--danger); }
+tr.priority-high td:first-child { box-shadow: inset 4px 0 0 #e08a00; }
+tr.priority-medium td:first-child { box-shadow: inset 4px 0 0 #9aa6bf; }
+tr.priority-low td:first-child { box-shadow: inset 4px 0 0 #d5dae5; }

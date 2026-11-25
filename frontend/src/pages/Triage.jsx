@@ -357,12 +357,13 @@ export default function Triage() {
                     <th>Category</th>
                     <th>Priority</th>
                     <th>Status</th>
+                    <th>Created</th>
                     <th>Reviewed</th>
                   </tr>
                 </thead>
                 <tbody>
                   {items.map((t) => (
-                    <tr key={t.id} className={`clickable ${t.id === selectedId ? 'selected' : ''}`} onClick={() => select(t.id)}>
+                    <tr key={t.id} className={`clickable priority-${t.priority.toLowerCase()} ${t.id === selectedId ? 'selected' : ''}`} onClick={() => select(t.id)}>
                       <td className="wrap">
                         <button className="btn btn-small" style={{ border: 0, background: 'none', padding: 0, textAlign: 'left', color: 'inherit' }} onClick={() => select(t.id)}>
                           {t.subject}
@@ -371,6 +372,7 @@ export default function Triage() {
                       <td><Badge value={t.category} /></td>
                       <td><Badge value={t.priority} /></td>
                       <td><Badge value={t.status} /></td>
+                      <td className="muted" style={{ whiteSpace: 'nowrap' }}>{fmtDateTime(t.createdAt)}</td>
                       <td>{t.isReviewed ? '✓' : '—'}</td>
                     </tr>
                   ))}
