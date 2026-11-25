@@ -32,12 +32,24 @@ function StatsStrip({ refreshKey }) {
           </div>
         ))}
       </div>
-      <div className="row muted" style={{ marginBottom: '.75rem' }}>
-        {CATEGORIES.map((c) => (
-          <span key={c}>
-            {pretty(c)}: <strong>{data.byCategory[c]}</strong>
-          </span>
-        ))}
+      <div className="card" style={{ marginBottom: '.75rem' }}>
+        <div className="muted" style={{ marginBottom: '.4rem' }}>Tickets by category</div>
+        <div className="distribution" role="img" aria-label="Tickets by category">
+          {CATEGORIES.map(
+            (c) =>
+              data.byCategory[c] > 0 && (
+                <span key={c} className={`seg seg-${c.toLowerCase().replace(/_/g, '-')}`} style={{ flexGrow: data.byCategory[c] }} title={`${pretty(c)}: ${data.byCategory[c]}`} />
+              ),
+          )}
+        </div>
+        <div className="legend">
+          {CATEGORIES.map((c) => (
+            <span key={c}>
+              <i className={`dot seg-${c.toLowerCase().replace(/_/g, '-')}`} aria-hidden="true" />
+              {pretty(c)}: <strong>{data.byCategory[c]}</strong>
+            </span>
+          ))}
+        </div>
       </div>
     </>
   );

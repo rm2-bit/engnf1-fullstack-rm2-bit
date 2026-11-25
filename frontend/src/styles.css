@@ -125,3 +125,14 @@ tr.priority-urgent td:first-child { box-shadow: inset 4px 0 0 var(--danger); }
 tr.priority-high td:first-child { box-shadow: inset 4px 0 0 #e08a00; }
 tr.priority-medium td:first-child { box-shadow: inset 4px 0 0 #9aa6bf; }
 tr.priority-low td:first-child { box-shadow: inset 4px 0 0 #d5dae5; }
+
+/* Category distribution bar */
+.distribution { display: flex; gap: 2px; height: 10px; border-radius: 5px; overflow: hidden; background: #e7eaf0; }
+.seg { min-width: 4px; }
+.seg-billing { background: #3550d6; }
+.seg-bug { background: #c62828; }
+.seg-feature-request { background: #7b4bd6; }
+.seg-login { background: #d98200; }
+.seg-delivery { background: #1b8a6b; }
+.legend { display: flex; flex-wrap: wrap; gap: .3rem 1rem; margin-top: .5rem; font-size: .85rem; color: var(--muted); }
+.dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: .35rem; }
