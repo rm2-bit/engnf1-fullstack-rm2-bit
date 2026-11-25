@@ -136,3 +136,9 @@ tr.priority-low td:first-child { box-shadow: inset 4px 0 0 #d5dae5; }
 .seg-delivery { background: #1b8a6b; }
 .legend { display: flex; flex-wrap: wrap; gap: .3rem 1rem; margin-top: .5rem; font-size: .85rem; color: var(--muted); }
 .dot { display: inline-block; width: 10px; height: 10px; border-radius: 50%; margin-right: .35rem; }
+
+/* Resource cards: accent by type */
+.resource-card { border-top: 3px solid var(--line); height: 100%; }
+.resource-room { border-top-color: #3550d6; }
+.resource-lab { border-top-color: #7b4bd6; }
+.resource-equipment { border-top-color: #d98200; }

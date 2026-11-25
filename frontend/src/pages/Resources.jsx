@@ -56,7 +56,7 @@ export default function Resources() {
         <div className="grid" style={{ opacity: loading ? 0.6 : 1 }}>
           {data.data.map((r) => (
             <Link key={r.id} to={`/resources/${r.id}`} style={{ textDecoration: 'none', color: 'inherit' }}>
-              <div className="card stack">
+              <div className={`card stack resource-card resource-${r.type.toLowerCase()}`}>
                 <div className="row" style={{ justifyContent: 'space-between' }}>
                   <h3>{r.name}</h3>
                   <Badge value={r.type} />
@@ -64,6 +64,7 @@ export default function Resources() {
                 <div className="muted">Capacity {r.capacity}</div>
                 <div>{r.description || <span className="muted">No description</span>}</div>
                 {!r.isActive && <span className="badge badge-rejected">Inactive</span>}
+                <span className="muted">View availability and book →</span>
               </div>
             </Link>
           ))}
