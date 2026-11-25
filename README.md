@@ -92,6 +92,25 @@ All routes are under `/api`. Errors: `{ error: { code, message } }`. Check order
 | Bookings | `POST /bookings`, `GET /bookings/mine`, `GET /bookings/:id`, `GET /bookings` (admin), `PATCH /bookings/:id/cancel`, `/approve` (admin), `/reject` (admin) |
 | Admin | `GET /admin/stats` |
 
+### Example requests
+```bash
+API=http://localhost:4000/api
+TOKEN=$(curl -s $API/auth/login -H 'Content-Type: application/json' \
+  -d '{"email":"admin@triagesync.test","password":"Admin@123"}' \
+  | node -pe 'JSON.parse(require("fs").readFileSync(0)).token')
+
+# Filtered, searched ticket list
+curl -s "$API/tickets?status=OPEN&q=refund&limit=5" -H "Authorization: Bearer $TOKEN"
+
+# Import (safe to repeat: same externalId is never duplicated)
+curl -s -X POST $API/tickets/import -H "Authorization: Bearer $TOKEN" -H 'Content-Type: application/json' \
+  -d '{"tickets":[{"externalId":"demo-1","subject":"Refund please","body":"Charged twice for my order"}]}'
+
+# Agent change with audit trail (category change sets isHumanOverride)
+curl -s -X PATCH $API/tickets/<ticket-id> -H "Authorization: Bearer $TOKEN" \
+  -H 'Content-Type: application/json' -H 'X-Agent: agent@example.com' -d '{"category":"BUG"}'
+```
+
 ## 9. Completed features checklist
 Tick these yourself after testing on the live URL.
 - [ ] Register / login / auth redirects
