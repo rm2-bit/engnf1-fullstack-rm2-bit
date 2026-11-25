@@ -191,6 +191,14 @@ export default function Triage() {
     setPage(1);
   };
 
+  const hasFilters = Boolean(filters.status || filters.category || filters.priority || qInput);
+
+  function clearFilters() {
+    setFilters({ status: '', category: '', priority: '' });
+    setQInput('');
+    setPage(1);
+  }
+
   function select(id) {
     if (id !== selectedId) setDetail(null);
     setSelectedId(id);
@@ -329,6 +337,9 @@ export default function Triage() {
               {PRIORITIES.map((p) => <option key={p} value={p}>{p}</option>)}
             </select>
           </label>
+          <button type="button" className="btn" onClick={clearFilters} disabled={!hasFilters}>
+            Clear filters
+          </button>
         </div>
       </div>
 
