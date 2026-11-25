@@ -71,6 +71,16 @@ Deploy: set `DATABASE_URL`, `JWT_SECRET`, `CORS_ORIGIN` (frontend URL) on the AP
 
 Checks: `API_URL=<api> npm run test:concurrency` (10 simultaneous bookings for one slot) and `npm run bench` (latency before/after indexes).
 
+### Tests and Docker
+- `cd backend && npm test` runs the unit tests (classifier, validation helpers, slot rules, middleware) with Node's built-in test runner. They need no database.
+- `docker build -t triagesync-api backend` builds the API image; pass the same variables as `.env` at run time.
+
+### Troubleshooting
+- `Missing required environment variable`: create `backend/.env` from `.env.example`.
+- `ENOTFOUND` or timeouts: `DATABASE_URL` still has the placeholder host, or a Supabase direct host is used instead of the session pooler.
+- `Cannot connect to the database` on start: check `DATABASE_URL` and `DB_SSL` (use `DB_SSL=false` for local Postgres).
+- Frontend shows "Cannot reach the server": the API is not running, `VITE_API_URL` is wrong, or `CORS_ORIGIN` does not match the frontend origin.
+
 ## 7. DB schema
 Column names are quoted camelCase so API output matches the brief exactly.
 - `users(id, name, email unique lowercase, passwordHash, role, createdAt)`
